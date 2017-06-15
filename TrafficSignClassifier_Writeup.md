@@ -81,7 +81,15 @@ Dropout Keep Probability - 0.90
 
 # 4. Approach for Finding a Solution
 
-I used an iterative approach to find a solution, starting first with the LeNet architecture and then making gradual modifications to see if I could improve the validation accuracy beyond an initial ~89%. As I mentioned in section 3 above, none of these modifications appeared to have much effect at first, but when I found and corrected an error in the normalization code, I was suddenly able to achieve >93% accuracy. Thus, I do not know which individual changes accounted for the increase in validation accuracy, but the combination of changes was able to push the accuracy above the threshold.
+The first architecture I tried was the LeNet architecture, with which I achieved a validation accuracy of about 89% (before normalization). 
+
+I couldn't determine exactly what was wrong with this architecture, other than it was not producing the required validation accuracy.
+
+I decided added a new layer to the fully-connected network, hoping that this would combine the features from the convolution layers in new ways to improve the classification. I added dropout regularization hoping to reduce any overfitting during training. I changed the activation to tanh just to see what effect that might have. I also increased the number of epochs to 20 to give the training a chance to reach higher accuracies (the accuracies seemed to still be increasing after 10 epochs).
+
+I tuned the number of epochs by doubling this number to 20. I tuned the dropout keep probability by re-running the training with a few different values. Values below 0.90 seemed to be holding back the accuracy improvement rate. I also tuned the number of nodes in the fully-connected layers by arbitrarily doubling them.
+
+The most important design choice that I made was in the preprocessing. I believe that made the biggest improvement in validation accuracy. All of the changes that I made to the LeNet architecture were simply trial and error attempts to get the validation accuracy above the 93% threshold. When I kept making changes and still found low accuracies, I did some further testing on my normalization code and discovered an error. When I fixed this, I was suddenly able to exceed the validation accuracy threshold. I decided to keep the architecture as-is after this.
 
 Here are the resulting accuracies:
 
@@ -104,6 +112,8 @@ Here are seven new images that I found on the web:
 ![](./NewImage_4.png)
 ![](./NewImage_5.png)
 ![](./NewImage_6.png)
+
+These new images look quite a bit different from the images in the training database. Specifically, the color scheme for these new images appears artificial, with more light blue and aqua tones than we would expect to see in real life traffic signs. Also, some of the new images seem faded, which I suspect is just a result of poor contrast. I was particularly worried that the change in color scheme might result in low accuracy, given that my reasoning for keeping all three channels instead of converting to grayscale was so that the network might be able to exploit this information to make better classifications.
 
 # 2. Model Predictions on New Images
 Here are the results of the prediction:
