@@ -109,13 +109,13 @@ Here are seven new images that I found on the web:
 Here are the results of the prediction:
 
     TRUTH               PREDICTION
-1. Traffic Signals      Traffic Signals
-2. Yield                Yield
-3. No Passing for...    No Passing for...
-4. Double Curve         Double Curve
-5. No Passing           No Passing
-6. Turn Right Ahead     Turn Right Ahead
-7. No Passing           No Passing
+1. Traffic Signals | Traffic Signals
+2. Yield | Yield
+3. No Passing for... | No Passing for...
+4. Double Curve | Double Curve
+5. No Passing | No Passing
+6. Turn Right Ahead | Turn Right Ahead
+7. No Passing | No Passing
 
 The prediction accuracy was 100%. This is consistent with the test accuracy.
 # 3. Model Certainty
